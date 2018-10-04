@@ -1299,6 +1299,7 @@ class cssmgr
 			$classes = preg_split('/\s+/', $attr['CLASS']);
 		}
 		if (!isset($attr['ID'])) {
+            $attr = is_array($attr)? $Attr: [];
 			$attr['ID'] = '';
 		}
 		// mPDF 6

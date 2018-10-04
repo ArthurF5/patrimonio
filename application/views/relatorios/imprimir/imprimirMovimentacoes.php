@@ -1,29 +1,16 @@
-<!DOCTYPE html>
 <html>
-
   <head>
     <title>Grupos Magister</title>
     <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/main.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/blue.css" class="skin-color" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    <script type="text/javascript"  src="<?php echo base_url();?>assets/js/jquery-1.10.2.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-    <style>
-        * {
-            font-size: 10px;
-        }
-    </style>
+
 <body style="background-color: transparent">
     <div class="row-fluid">
         <div class="span12">
-            <div class="cabecalho">
-                <div class="logo">
+            <div class="cabecalho" style="background: yellow;">
+                <div class="logo" >
                     <img src="assets/img/logo-fatepi-p.png" alt="">
                 </div>
                 <div class="empresa" >
@@ -47,37 +34,37 @@
                     <div class="widget-content nopadding">
                         <hr size="1" style="border:0.4px dashed green;letter-spacing: 1em; ">
                         <div class="teste">
-                            <p>121 - CADEIRA DE MADEIRA</p>
+                            <p>0121 - CADEIRA DE MADEIRA</p>
                         </div>
-                        <table class="table table-bordered" id="tabela">
+                        <table class="table table-bordered bpmTopic" id="tabela">
                             <thead>
-                                <tr>
-                                    <th style="padding: 0">Código</th>
-                                    <th style="padding: 0">Tipo</th>
-                                    <th style="padding: 0">Data</th>
+                                <tr class="headerrow">
+                                    <th style="">Código</th>
+                                    <th style="">Tipo</th>
+                                    <th style="">Data</th>
 
-                                    <th style="padding: 0">Histórico</th>
+                                    <th style="">Histórico</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td style="padding: 0"> 00003 </td>
-                                    <td style="padding: 0"> REGISTRAR </td>
-                                    <td style="padding: 0"> 02/10/2018</td>
-                                    <td style="padding: 0"> Inservível </td>
+                                <tr class="oddrow">
+                                    <td style=""> 00003 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 02/10/2018</td>
+                                    <td style=""> Inservível </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 0"> 00003 </td>
-                                    <td style="padding: 0"> TRANFERÊNCIA </td>
-                                    <td style="padding: 0"> 03/10/2018</td>
-                                    <td style="padding: 0"> </td>
+                                    <td style=""> 00003 </td>
+                                    <td style=""> TRANFERÊNCIA </td>
+                                    <td style=""> 03/10/2018</td>
+                                    <td style=""> </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 0"> 00040 </td>
-                                    <td style="padding: 0"> REGISTRAR </td>
-                                    <td style="padding: 0"> 03/10/2018</td>
-                                    <td style="padding: 0"> </td>
+                                    <td style=""> 00040 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 03/10/2018</td>
+                                    <td style=""> </td>
                                 </tr>
 
                             </tbody>
@@ -98,11 +85,28 @@
                             <tbody>
 
                                 <tr>
-                                    <td style="padding: 0"> 00003 </td>
-                                    <td style="padding: 0"> REGISTRAR </td>
-                                    <td style="padding: 0"> 02/10/2018</td>
-
-                                    <td style="padding: 0"> Inservível </td>
+                                    <td style=""> 00003 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 02/10/2018</td>
+                                    <td style=""> Inservível </td>
+                                </tr>
+                                <tr>
+                                    <td style=""> 00003 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 02/10/2018</td>
+                                    <td style=""> Inservível </td>
+                                </tr>
+                                <tr>
+                                    <td style=""> 00003 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 02/10/2018</td>
+                                    <td style=""> Inservível </td>
+                                </tr>
+                                <tr>
+                                    <td style=""> 00003 </td>
+                                    <td style=""> REGISTRAR </td>
+                                    <td style=""> 02/10/2018</td>
+                                    <td style=""> Inservível </td>
                                 </tr>
 
                             </tbody>

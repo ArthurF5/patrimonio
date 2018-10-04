@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
 <head>
-        <title>MAP OS</title><meta charset="UTF-8" />
+        <title>Patrimônio</title><meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-responsive.min.css" />
@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/fav.png">
     </head>
     <body>
-        <div id="loginbox">            
+        <div id="loginbox">
             <form  class="form-vertical" id="formLogin" method="post" action="<?php echo site_url()?>/mine/login">
                     <?php if ($this->session->flashdata('error') != null) {?>
                         <div class="alert alert-danger">
@@ -41,9 +41,9 @@
                     <a href="<?= site_url('mine/cadastrar') ?>" class="btn btn-success btn-large">Cadastrar-me</a>
                 </div>
             </form>
-       
+
         </div>
-        
+
         <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notification</a>
 
         <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -60,7 +60,7 @@
           </div>
         </div>
 
-      
+
       <script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
       <script src="<?php echo base_url()?>assets/js/jquery.validate.js"></script>
 
@@ -80,10 +80,10 @@
                           email: { required: 'Campo Requerido.', email: 'Insira Email válido'},
                           senha: {required: 'Campo Requerido.'}
                     },
-                   submitHandler: function( form ){       
+                   submitHandler: function( form ){
                          var dados = $( form ).serialize();
-                         
-                    
+
+
                         $.ajax({
                           type: "POST",
                           url: "<?php echo base_url();?>index.php/mine/login?ajax=true",

@@ -63,7 +63,7 @@
         <li class="<?php if (isset($menuClientes)) {
             echo 'active';
 
-};?>"><a href="<?php echo base_url()?>index.php/clientes"><i class="icon icon-group"></i> <span>Clientes</span></a></li>
+};?>"><a href="<?php echo base_url()?>index.php/clientes"><i class="icon icon-group"></i> <span>Colaboradores</span></a></li>
     <?php } ?>
 
     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>
