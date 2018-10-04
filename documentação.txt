@@ -1,0 +1,110 @@
+﻿Documentação
+
+1 - Cadastrado de Equipamento/Bens
+2 - Cadastrado de Instituição
+3 - Cadastrado de Setores
+4 - Cadastrado de Equipamentos/Patrimônio
+4 - Cadastrado de usuários
+5 - Relatório
+6 - Movimentação???
+7 - Ordem de Serviço
+8 - Login
+9 - Cadastro Classificação de Bens
+
+-----------------------------------------
+
+
+1 ) Equipamento/Bens
+    -### NESSA TELA VOCE IRÁ PODER CONSULTAR BENS, CADASTRAR , VISUALIZAR MOVIMENTAR E CADASTRAR TOM
+    1.1 Cadastro
+    codigo
+    descricao
+    tipo de inscricao (compra - venda)
+    registro/documento
+    nota fiscal
+    data da inscricao
+    valor unitario
+    numero do empenho
+    data do empenho
+    natureza do bem (2 - INDEP. DA EXEC. ORÇAMENTO)
+    classificacao o bem (EQUIPAMENTO, BEM IMOVEL, VER DEPOIS OS DEMAIS)
+    origem/fornecedor
+    bem imovel (endereco)
+    (salvar)
+    1.2 Movimentação
+    (tabela)
+        numero do tom (organizar pelo codigo exemplo: 01450 01450)
+        tipo do tom (baixa - transferencia - tombamento)
+        data
+        tipo (inservível (motivo da baixa???))
+        codigo do setor de saída (não seria melhor colocar a propria descricao)
+        codigo do setor de entrada (não seria melhor colocar a propria descricao)
+    tipo de tombamento
+    data do tombamento
+    quantidade (ele irá criar a quatidade de tombamentos que for colocado aqui)
+    setor
+    estado de conservação (ruim, bom, otimo)
+    valor atual do bem (geralmente é o mesmo do valor unitario)
+    historico (colocar alguma observacao sobre esse historico)
+    usuario (usuario que fez esse tom)
+
+
+2 ) Instituição
+    razao social
+    cnpj
+    endereco
+
+
+3 ) Setores
+    codigo
+    descricao (escola de ensino fundamental padre pedro)
+    unidade orçamentária ()
+    endereco completo para localizacao dos bens
+    distrito
+
+8 ) Login
+    (escolha parametros)
+    exercicio (competencia)(data)
+    entidade (unidade - empresa)
+    usuario
+    senha
+
+
+
+
+
+9) Cadastro Classificação de Bens
+
+
+6 - Protocolo
+    ID
+    data de entrada
+    setor
+    data saída
+    data retorno
+    obs
+    interessados
+    usuario
+
+
+Relatórios
+
+1 - Termo de resposabilidade??
+    SETOR RECURSOS HUMANOS
+    ficha bem patrimonial
+    1.1 dados bem:
+    cod protocolo : 9573
+    descricao : Micro Computador
+    situacao do bem: ótimo
+    lotacao atual: Recursos humanos
+    data protocolo: 02/10/2018
+
+    historico (negrito): pc da fulana
+
+    1.2 dados do empenho
+    Tipo registro: TRANSFERÊNCIA
+    Nota Fiscal: 12321
+    Valor do Objeto: 1.250,00
+
+
+
