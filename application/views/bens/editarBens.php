@@ -130,14 +130,24 @@ tr:hover {
                     </div>
                 </div>
                 <div class="form-row control-group">
-                    <div class="form-group col-cl-4">
+                    <div class="form-group col-cl-2">
                         <label for="classificacao_bem">Classificação do Bem</label>
                         <label for="id_label_single_classificacao_bens">
-                            <select class="col-ip-4 js-example-basic-single js-states form-control" id="id_label_single_classificacao_bens" name="classificacao_bem" >
+                            <select class="col-ip-2 js-example-basic-single js-states form-control" id="id_label_single_classificacao_bens" name="classificacao_bem" >
                                     <?php echo $selectClassificacaoBens; ?>
                             </select>
                         </label>
 
+                    </div>
+                    <div class="form-group col-cl-2">
+                        <label for="tipo_bem"  >Tipo de bem</label>
+                        <select id="tipo_bem" name="tipo_bem">
+                                <option value="1">PROJETOR</option>
+                                <option value="2">COMPUTADOR</option>
+                                <option value="3">CADEIRAS</option>
+                                <option value="4">DOCUMENTOS</option>
+
+                        </select>
                     </div>
                     <div class="form-group col-cl-5">
                         <label for="fornecedor">Fornecedor</label>
@@ -170,7 +180,7 @@ tr:hover {
                         <th>Data</th>
                         <th>Setor de Saída</th>
                         <th>Setor de Entrada</th>
-                        <th></th>
+                        <th>Número de Serie</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -193,18 +203,19 @@ tr:hover {
                         <th>Data</th>
                         <th>Setor de Saída</th>
                         <th>Setor de Entrada</th>
+                        <th>Número de Série</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($protocolo as $r) {
                         echo '<tr>';
-                        echo '<td>'.str_pad((string) $r->protocolo, 5 , '0' ,STR_PAD_LEFT).'</td>';
-                        echo '<td>'.$r->tipo.'</td>';
-                        echo '<td>'.data_pt($r->data).'</td>';
-                        echo '<td>'.$r->setor_anterior.'</td>';
-                        echo '<td>'.$r->setor_atual.'</td>';
-
+                            echo '<td>'.str_pad((string) $r->protocolo, 5 , '0' ,STR_PAD_LEFT).'</td>';
+                            echo '<td>'.$r->tipo.'</td>';
+                            echo '<td>'.data_pt($r->data).'</td>';
+                            echo '<td>'.$r->setor_anterior.'</td>';
+                            echo '<td>'.$r->setor_atual.'</td>';
+                            echo '<td>'.$r->numero_serie.'</td>';
                         echo '<td>';
                         // if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) {
                             // echo '<a style="margin-right: 1%" href="'.base_url().'index.php/produtos/visualizar/'.$r->id.'" class="btn tip-top" title="Visualizar Produto"><i class="icon-eye-open"></i></a>  ';
@@ -235,6 +246,13 @@ tr:hover {
             </div>
             <form action="<?php echo current_url(); ?>" id="formProtocolo" method="post" class="form-horizontal" accept-charset="UTF-8">
             <div class="form-row control-group ">
+                <div class="form-group col-cl-2 " >
+                    <label for="cod_protocolo">Código</label>
+                    <input type="text" value="<?php echo zerosAEsquerda($protocolo[0]->protocolo,5); ?>"
+                    name="cod_protocolo" class="form-control col-ip-2 " id="cod_protocolo" placeholder="" >
+                </div>
+            </div>
+            <div class="form-row control-group ">
                 <div class="form-group col-cl-2 " style="display: none ">
                     <label for="bem_id">bem_id</label>
                     <input type="text" name="bem_id" class="form-control col-ip-2 " id="bem_id" placeholder="" >
@@ -243,11 +261,7 @@ tr:hover {
                     <label for="id_protocolo">id_protocolo</label>
                     <input type="text"  name="id_protocolo" class="form-control col-ip-1 " id="id_protocolo" placeholder="" >
                 </div>
-                <div class="form-group col-cl-2 " >
-                    <label for="cod_protocolo">Código</label>
-                    <input type="text" value="<?php echo zerosAEsquerda($protocolo[0]->protocolo,5); ?>"
-                    name="cod_protocolo" class="form-control col-ip-2 " id="cod_protocolo" placeholder="" >
-                </div>
+
                 <div class="form-group col-cl-2">
                     <label for="tipo"  >Tipo de Processo</label>
                     <select id="tipo" name="tipo">
@@ -261,6 +275,10 @@ tr:hover {
                 <div class="form-group col-cl-2 ">
                     <label for="data">Data</label>
                     <input value="<?php echo $protocolo[0]->data; ?>"  type="text" name="data" class="form-control col-ip-2  datepicker" id="data" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-cl-2">
+                    <label for="numero_serie">Número de Série</label>
+                    <input type="text" name="numero_serie" class="form-control col-ip-2" id="numero_serie" placeholder="" >
                 </div>
                 <div class="form-group col-cl-1" style="display: none">
                     <label for="qtde">Quantidade</label>
@@ -302,7 +320,7 @@ tr:hover {
             <div class="form-actions">
                 <div class="span12">
                     <div class="span6 offset3">
-                        <!-- <button type="button" class="btn btn-primary" id="novoProtocolo"><i class="icon-plus icon-white"></i> Novo</button> -->
+                        <button type="button" class="btn btn-primary" id="novoProtocolo"><i class="icon-plus icon-white"></i> Novo</button>
                         <button type="submit" class="btn btn-success" id="adicionarProtocolo"><i class="icon-plus icon-white"></i> Salvar</button>
                         <!-- <button type="button" id="teste">executar</button> -->
                         <a href="<?php echo base_url() ?>index.php/bens" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
@@ -427,6 +445,7 @@ tr:hover {
         $('select[name=estado_conservacao]').prop("disabled", true);
         $('input[name=valor_atual]').prop("disabled", true);
         $('input[name=historico]').prop("disabled", true);
+        $('input[name=numero_serie]').prop("disabled", true);
     }
 
     // // movimentacao de bens
@@ -521,6 +540,7 @@ tr:hover {
             var estado_conservacao = $.parseJSON(dados)['estado_conservacao'];
             var valor_atual = $.parseJSON(dados)['valor_atual'];
             var historico = $.parseJSON(dados)['historico'];
+            var numero_serie = $.parseJSON(dados)['numero_serie'];
 
 
             $('input[name=cod_protocolo]').val(cod_protocolo);
@@ -530,6 +550,7 @@ tr:hover {
             $('select[name=estado_conservacao]').val(estado_conservacao);
             $('input[name=valor_atual]').val(valor_atual);
             $('input[name=historico]').val(historico);
+            $('input[name=numero_serie]').val(numero_serie);
 
 
             if ($vg_modo == 'visualizando') {
@@ -598,6 +619,7 @@ tr:hover {
         $('select[name=estado_conservacao]').prop("disabled", false);
         $('input[name=valor_atual]').prop("disabled", false);
         $('input[name=historico]').prop("disabled", false);
+        $('input[name=numero_serie]').prop("disabled", false);
     }
 
 
@@ -688,7 +710,7 @@ tr:hover {
                 $id_protocolo = $.parseJSON(data)['id_protocolo'];
                 $objProtocolo = $.parseJSON(data)['objProtocolo'];
 
-                mostrarProtocoloNaTabela($objProtocolo['protocolo'], $objProtocolo['id'] , $objProtocolo['tipo'], $objProtocolo['data'], $objProtocolo['setor_atual'], $objProtocolo['setor_anterior']);
+                mostrarProtocoloNaTabela($objProtocolo['protocolo'], $objProtocolo['id'] , $objProtocolo['tipo'], $objProtocolo['data'], $objProtocolo['setor_atual'], $objProtocolo['setor_anterior'],$objProtocolo['numero_serie']);
                 $vg_modo = 'visualizando';
 
                 // console.log($objProtocolo);
@@ -708,7 +730,7 @@ tr:hover {
 
 
 
-    function mostrarProtocoloNaTabela(codigoProtocolo, idProtocolo , tipo, data, setor_atual,setor_anterior){
+    function mostrarProtocoloNaTabela(codigoProtocolo, idProtocolo , tipo, data, setor_atual,setor_anterior,numero_serie){
         var coluna = '';
         var colunaTag = '<a id="movimentarProtocolo" style="margin-right: 1%" idProtocolo="'+idProtocolo+'" href="" class="btn btn-info tip-top"  title="Movimentar item"><i class="icon-exchange icon-white"></i></a>';
 
@@ -722,6 +744,7 @@ tr:hover {
         coluna +=   "<td>"+data+"</td>";
         coluna +=   "<td>"+setor_anterior+"</td>";
         coluna +=   "<td>"+setor_atual+"</td>";
+        coluna +=   "<td>"+numero_serie+"</td>";
         coluna +=   "<td>"+colunaTag+"</td>";
         coluna +="</tr>";
 

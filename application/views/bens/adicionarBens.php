@@ -110,6 +110,7 @@ tr:hover {
                         <label for="codigo">Código</label>
                         <input name="codigo" type="text" class="form-control col-ip-1" id="codigo" disabled="" >
                     </div>
+
                     <div class="form-group col-cl-3">
                         <label for="descricao">Descrição</label>
                         <input name="descricao" type="text" class="form-control col-ip-3" id="descricao" >
@@ -129,14 +130,24 @@ tr:hover {
                     </div>
                 </div>
                 <div class="form-row control-group">
-                    <div class="form-group col-cl-4">
+                    <div class="form-group col-cl-2">
                         <label for="classificacao_bem">Classificação do Bem</label>
                         <label for="id_label_single_classificacao_bens">
-                            <select class="col-ip-4 js-example-basic-single js-states form-control" id="id_label_single_classificacao_bens" name="classificacao_bem">
+                            <select class="col-ip-2 js-example-basic-single js-states form-control" id="id_label_single_classificacao_bens" name="classificacao_bem">
                                     <?php echo $selectClassificacaoBens; ?>
                             </select>
                         </label>
 
+                    </div>
+                    <div class="form-group col-cl-2">
+                        <label for="tipo_bem"  >Tipo de bem</label>
+                        <select id="tipo_bem" name="tipo_bem">
+                                <option value="1">PROJETOR</option>
+                                <option value="2">COMPUTADOR</option>
+                                <option value="3">CADEIRAS</option>
+                                <option value="4">DOCUMENTOS</option>
+
+                        </select>
                     </div>
                     <div class="form-group col-cl-5">
                         <label for="fornecedor">Fornecedor</label>
@@ -167,7 +178,7 @@ tr:hover {
                         <th>Data</th>
                         <th>Setor de Entrada</th>
                         <th>Setor de Saída</th>
-                        <th></th>
+                        <th>Número de Serie</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -190,7 +201,7 @@ tr:hover {
                         <th>Data</th>
                         <th>Setor de Entrada</th>
                         <th>Setor de Saída</th>
-                        <th></th>
+                        <th>Número de Série</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -202,6 +213,7 @@ tr:hover {
                         echo '<td>'.data_pt($r->data).'</td>';
                         echo '<td>'.$r->setor_atual.'</td>';
                         echo '<td>'.$r->setor_anterior.'</td>';
+                        echo '<td>'.$r->numero_serie.'</td>';
 
                         echo '<td>';
                         // if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) {
@@ -226,26 +238,33 @@ tr:hover {
             <?php } ?>
             </div>
             <form action="<?php echo current_url(); ?>" id="formProtocolo" method="post" class="form-horizontal" accept-charset="UTF-8">
+            <div class="form-row control-group " style="display: none;">
+
+            </div>
             <div class="form-row control-group ">
                 <div class="form-group col-cl-2 " style="display: none">
-                    <label for="bem_id">Data</label>
+                    <label for="bem_id"></label>
                     <input type="text" name="bem_id" class="form-control col-ip-2 " id="bem_id" placeholder="" >
                 </div>
                 <div class="form-group col-cl-2">
-                    <label for="tipo"  >Tipo de Processo</label>
-                    <select id="tipo" name="tipo">
-                            <option value="REGISTRAR" >REGISTRAR</option>
-                            <option value="BAIXA">BAIXA</option>
-                            <option value="TRANSFERÊNCIA">TRANSFERÊNCIA</option>
-                            <option value="MANUTENÇÃO">MANUTENÇÃO</option>
+                        <label for="tipo"  >Tipo de Processo</label>
+                        <select id="tipo" name="tipo">
+                                <option value="REGISTRAR" >REGISTRAR</option>
+                                <option value="BAIXA">BAIXA</option>
+                                <option value="TRANSFERÊNCIA">TRANSFERÊNCIA</option>
+                                <option value="MANUTENÇÃO">MANUTENÇÃO</option>
 
-                    </select>
+                        </select>
                 </div>
                 <div class="form-group col-cl-2 ">
                     <label for="data">Data</label>
                     <input type="text"  autocomplete="off" name="data" class="form-control col-ip-2  datepicker" id="data" placeholder="" >
                 </div>
                 <div class="form-group col-cl-2">
+                    <label for="numero_serie">Número de Série</label>
+                    <input type="text" name="numero_serie" class="form-control col-ip-2" id="numero_serie" placeholder="" >
+                </div>
+                <div class="form-group col-cl-2" style="display: none;">
                     <label for="qtde">Quantidade</label>
                     <input type="text" name="qtde" class="form-control col-ip-2" id="qtde" placeholder="" disabled="true">
                 </div>
@@ -370,7 +389,7 @@ tr:hover {
                     $id_protocolo = $.parseJSON(data)['id_protocolo'];
                     $objProtocolo = $.parseJSON(data)['objProtocolo'];
 
-                    mostrarProtocoloNaTabela($objProtocolo['protocolo'], $objProtocolo['id'] , $objProtocolo['tipo'], $objProtocolo['data'], $objProtocolo['setor_atual'], $objProtocolo['setor_anterior']);
+                    mostrarProtocoloNaTabela($objProtocolo['protocolo'], $objProtocolo['id'] , $objProtocolo['tipo'], $objProtocolo['data'], $objProtocolo['setor_atual'], $objProtocolo['setor_anterior'],$objProtocolo['numero_serie']);
                 } else {
                     $('#mensagem_erro strong').prepend($mensagem);
                     $('#mensagem_erro').show();
@@ -387,7 +406,7 @@ tr:hover {
 
         }
 
-    function mostrarProtocoloNaTabela(codigoProtocolo, idProtocolo , tipo, data, setor_atual,setor_anterior){
+    function mostrarProtocoloNaTabela(codigoProtocolo, idProtocolo , tipo, data, setor_atual,setor_anterior,numero_serie){
         var coluna = '';
         var colunaTag = '';
         // var colunaTag = '<a id="movimentarProtocolo" style="margin-right: 1%" idProtocolo="'+idProtocolo+'" href="" class="btn btn-info tip-top" title="Movimentar item"><i class="icon-exchange icon-white"></i></a>';
@@ -402,7 +421,8 @@ tr:hover {
         coluna +=   "<td>"+data+"</td>";
         coluna +=   "<td>"+setor_anterior+"</td>";
         coluna +=   "<td>"+setor_atual+"</td>";
-        coluna +=   "<td>"+colunaTag+"</td>";
+        coluna +=   "<td>"+numero_serie+"</td>";
+        // coluna +=   "<td>"+colunaTag+"</td>";
         coluna +="</tr>";
 
 

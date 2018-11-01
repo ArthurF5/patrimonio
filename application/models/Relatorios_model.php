@@ -90,7 +90,60 @@ class Relatorios_model extends CI_Model
         return $this->db->get('produtos')->result();
     }
 
-    public function bensRapid()
+    public function bensRapid($id_setor=28)
+    {
+        // select
+        //     bens.id , tb.descricao as tipo  , bens.descricao, p.numero_serie , s.descricao as d_setor_atual,
+        //     p.protocolo as num_protocolo , p.id as id_protocolo
+
+        // from bens
+        //     inner join tipo_bem tb on tb.id = bens.tipo_bem
+        //     inner join protocolo p on p.bem_id = bens.id
+        //     inner join setores s on s.id = p.setor_id
+        // where
+        //     p.setor_id = 28
+        //     and
+        //     p.id = (select
+        //                id
+        //            from
+        //                protocolo
+        //            where
+        //                protocolo =  p.protocolo
+        //                and
+        //                bem_id = bens.id
+        //            order by
+        //                id desc limit 0,1)
+        // group by
+        //     p.protocolo
+        // order by
+        //     tb.descricao
+        // ;
+
+        $this->db->select('bens.id , tb.descricao as tipo  , bens.descricao, p.numero_serie , s.descricao as d_setor_atual,
+            p.protocolo as num_protocolo , p.id as id_protocolo, s.id as setor_id');
+        $this->db->from('bens ');
+        $this->db->join('tipo_bem tb', 'tb.id = bens.tipo_bem', 'inner');
+        $this->db->join('protocolo p', 'p.bem_id = bens.id', 'inner');
+        $this->db->join('setores s', 's.id = p.setor_id', 'inner');
+        $this->db->where('p.setor_id =  '.$id_setor.'
+                            and
+                            p.id = (select
+                                       id
+                                   from
+                                       protocolo
+                                   where
+                                       protocolo =  p.protocolo
+                                       and
+                                       bem_id = bens.id
+                                   order by
+                                       id desc limit 0,1)');
+        $this->db->group_by('p.protocolo');
+        $this->db->order_by('tb.descricao ', 'asc');
+
+        return $this->db->get()->result();
+    }
+
+    public function bensRapid_backup()
     {
         $this->db->select('b.id, b.descricao , count(DISTINCT p.protocolo) as qtde_bens');
         $this->db->from('bens b');
@@ -99,6 +152,7 @@ class Relatorios_model extends CI_Model
 
         return $this->db->get()->result();
     }
+
 
     public function movimentacoesRapid()
     {

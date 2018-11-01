@@ -107,7 +107,7 @@ if (!defined('PHP_VERSION_ID')) {
 
 class mPDF
 {
-
+	const SCALE = 72 / 25.4;
 	///////////////////////////////
 	// EXTERNAL (PUBLIC) VARIABLES
 	// Define these in config.php

@@ -108,6 +108,7 @@ class Protocolo extends CI_Controller {
                 'valor_atual' => set_value('valor_atual'),
                 'estado_conservacao' => (set_value('estado_conservacao')),
                 'historico' => set_value('historico'),
+                'numero_serie' => set_value('numero_serie')
             );
 
             if ($idProtocolo != null) {

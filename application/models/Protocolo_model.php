@@ -117,7 +117,7 @@ class Protocolo_model extends CI_Model {
         $this->db->select('
                      p.id,  p.protocolo, p.tipo , p.data, p.setor_id , s.descricao as setor_atual,
                      p.estado_conservacao, p.valor_atual, p.historico, p.bem_id,
-                     p.setor_anterior_id , se.descricao as setor_anterior
+                     p.setor_anterior_id , se.descricao as setor_anterior,p.numero_serie
                     ');
         $this->db->from('protocolo p');
         $this->db->join('setores s', 's.id = p.setor_id', 'left');
@@ -137,7 +137,7 @@ class Protocolo_model extends CI_Model {
         $this->db->select('
                      p.id,  p.protocolo, p.tipo , p.data, p.setor_id , s.descricao as setor_atual,
                      p.estado_conservacao, p.valor_atual, p.historico, p.bem_id,
-                     p.setor_anterior_id , se.descricao as setor_anterior
+                     p.setor_anterior_id , se.descricao as setor_anterior, p.numero_serie
                     ');
         $this->db->from('protocolo p');
         $this->db->join('setores s', 's.id = p.setor_id', 'left');
@@ -195,7 +195,7 @@ class Protocolo_model extends CI_Model {
         $this->db->select('
                      p.id,  p.protocolo, p.tipo , p.data, p.setor_id , s.descricao as setor_atual,
                      p.estado_conservacao, p.valor_atual, p.historico, p.bem_id,
-                     p.setor_anterior_id , se.descricao as setor_anterior
+                     p.setor_anterior_id , se.descricao as setor_anterior,p.numero_serie
                     ');
         $this->db->from('protocolo p');
         $this->db->join('setores s', 's.id = p.setor_id', 'left');

@@ -148,6 +148,7 @@ class Bens extends CI_Controller
             $objCadastro->valor_unitario = (float) $post['valor_unitario'];
             $objCadastro->classificacao_bem = $post['classificacao_bem'];
             $objCadastro->origem_fornecedor = $post['fornecedor'];
+            $objCadastro->tipo_bem = $post['tipo_bem'];
 
             if ($this->bens_model->add('bens', $objCadastro) == true) {
 
@@ -337,22 +338,22 @@ class Bens extends CI_Controller
         $id =  $this->input->post('id');
         if ($id == null) {
 
-            $this->session->set_flashdata('error', 'Erro ao tentar excluir produto.');
-            redirect(base_url().'index.php/produtos/gerenciar/');
+            $this->session->set_flashdata('error', 'Erro ao tentar excluir bem.');
+            redirect(base_url().'index.php/bens/gerenciar/');
         }
 
-        $this->db->where('produtos_id', $id);
-        $this->db->delete('produtos_os');
+        // $this->db->where('produtos_id', $id);
+        // $this->db->delete('produtos_os');
 
 
-        $this->db->where('produtos_id', $id);
-        $this->db->delete('itens_de_vendas');
+        // $this->db->where('produtos_id', $id);
+        // $this->db->delete('itens_de_vendas');
 
-        $this->produtos_model->delete('produtos', 'idProdutos', $id);
+        $this->bens_model->delete('bens', 'id', $id);
 
 
         $this->session->set_flashdata('success', 'Produto excluido com sucesso!');
-        redirect(base_url().'index.php/produtos/gerenciar/');
+        redirect(base_url().'index.php/bens/gerenciar/');
     }
 
     function carregar(){
